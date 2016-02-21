@@ -12,7 +12,7 @@
 
 	<!-- 扩充了注解驱动，可以将请求参数绑定到控制器参数 -->
 	<mvc:annotation-driven />
-	
+
 	<context:component-scan base-package="com.james">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
@@ -21,7 +21,11 @@
 	<!-- 静态资源处理， css， js， imgs -->
 	<!-- <mvc:resources mapping="/resources/**" location="/resources/" /> -->
 
-
+	<!-- 静态资源映射 -->
+	<mvc:default-servlet-handler />
+	<mvc:resources mapping="/images/**" location="/WEB-INF/content/images/" />
+	<mvc:resources mapping="/css/**" location="/WEB-INF/content/css/" />
+	<mvc:resources mapping="/script/**" location="/WEB-INF/content/scripts/" />
 	<!-- 配置视图解析器，即如何把handler方法返回值解析为实际的物理视图 -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -31,11 +35,22 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
-	<!-- 静态资源映射 -->
-	<mvc:default-servlet-handler />
-	<mvc:resources mapping="/images/**" location="/WEB-INF/images/" />
-	<mvc:resources mapping="/css/**" location="/WEB-INF/css/" />
-	<mvc:resources mapping="/script/**" location="/WEB-INF/script/" />
+	<!--配置拦截器, 多个拦截器,顺序执行 -->
+	<!--拦截所有的Action -->
+	<mvc:interceptors>
+		<bean class="com.james.web.interceptors.CommonInterceptor"></bean>
+	</mvc:interceptors>
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/hello/*" />
+			<bean class="com.james.web.interceptors.SecurityInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<!-- 当设置多个拦截器时，先按顺序调用preHandle方法，然后逆序调用每个拦截器的postHandle和afterCompletion方法 -->
+	<!-- <mvc:interceptor> 匹配的是url路径， 如果不配置或/**,将拦截所有的Controller <mvc:mapping 
+		path="/" /> <mvc:mapping path="/user/**" /> <mvc:mapping path="/test/**" 
+		/> </mvc:interceptor> -->
 
 	<!-- 配置ViewResolver。 可以用多个ViewResolver。 使用order属性排序。 InternalResourceViewResolver放在最后。 -->
 	<!-- <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver"> 

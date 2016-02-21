@@ -1,0 +1,13 @@
+
+拦截器方法的调用顺序是：先进后出
+--------------------------------------------------
+拦截器：preHandle
+SecurityInterceptor拦截器：preHandle
+进入：HelloController-->helloMvc
+进入：HelloService-->helloMvc
+进入：HelloDao-->helloMvc
+进入：HelloDao-->helloMvc2
+SecurityInterceptor拦截器：postHandle
+拦截器：postHandle
+SecurityInterceptor拦截器：afterCompletion
+拦截器：afterCompletion
