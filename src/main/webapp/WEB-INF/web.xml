@@ -6,13 +6,13 @@
 	<display-name>SpringMVC</display-name>
 	
 	<!-- Spring应用上下文， 理解层次化的ApplicationContext -->
-	<context-param>
+	<!-- <context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/applicationContext.xml</param-value>
 	</context-param>
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
+	</listener> -->
 	
 	
 	<!-- DispatcherServlet, Spring MVC的核心 -->
@@ -22,7 +22,7 @@
 		<!-- DispatcherServlet对应的上下文配置， 默认为/WEB-INF/$servlet-name$-servlet.xml -->
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/mvc-dispatcher-servlet.xml</param-value>
+			<param-value>/WEB-INF/springMVC.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>

@@ -8,5 +8,7 @@ public class HelloDao {
 		System.out.println("进入：HelloDao-->helloMvc");
 		
 		System.out.println("进入：HelloDao-->helloMvc2");
+		
+		//DispatcherServlet
 	}
 }
