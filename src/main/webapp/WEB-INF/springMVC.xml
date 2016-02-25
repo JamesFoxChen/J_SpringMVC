@@ -2,6 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -26,6 +27,7 @@
 	<mvc:resources mapping="/images/**" location="/WEB-INF/content/images/" />
 	<mvc:resources mapping="/css/**" location="/WEB-INF/content/css/" />
 	<mvc:resources mapping="/script/**" location="/WEB-INF/content/scripts/" />
+	
 	<!-- 配置视图解析器，即如何把handler方法返回值解析为实际的物理视图 -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -47,6 +49,21 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 
+
+	 <!-- 配置数据源 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close" 
+		p:driverClassName="com.mysql.jdbc.Driver"
+	    p:url="jdbc:mysql://localhost:3306/test"
+		p:username="root"
+		p:password="root" />
+		
+		<!-- 配置Jdbc模板  -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"
+		p:dataSource-ref="dataSource" />
+		
+		
+		
 	<!-- 当设置多个拦截器时，先按顺序调用preHandle方法，然后逆序调用每个拦截器的postHandle和afterCompletion方法 -->
 	<!-- <mvc:interceptor> 匹配的是url路径， 如果不配置或/**,将拦截所有的Controller <mvc:mapping 
 		path="/" /> <mvc:mapping path="/user/**" /> <mvc:mapping path="/test/**" 
@@ -59,26 +76,5 @@
 		/> <entry key="htm" value="text/html" /> </map> </property> <property name="defaultViews"> 
 		<list> <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"> 
 		</bean> </list> </property> <property name="ignoreAcceptHeader" value="true" 
-		/> </bean> -->
-
-	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-		<property name="dataSource">
-			<ref local="dataSource" />
-		</property>
-	</bean>
-	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName">
-			<value>com.mysql.jdbc.Driver</value>
-		</property>
-		<property name="url">
-			<value>jdbc:mysql://localhost:3306/test</value>
-		</property>
-		<property name="username">
-			<value>root</value>
-		</property>
-		<property name="password">
-			<value>root</value>
-		</property>
-	</bean>
+		/> </bean> --> 
 </beans>
