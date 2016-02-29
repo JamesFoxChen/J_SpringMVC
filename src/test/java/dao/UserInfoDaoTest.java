@@ -3,19 +3,18 @@ package dao;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.james.dao.UserInfoDao;
 
 public class UserInfoDaoTest {
 
-	@Test
+	/*@Test
 	public void test() {
-		/*UserInfo ui=new UserInfo();
+		UserInfo ui=new UserInfo();
 		ui.setUserName("james");
 		ui.setPassword("123");
 		
 		UserInfoDao dao=new UserInfoDao();
 		int i=dao.insertLoginLog(ui);
-		System.err.println(i);*/
+		System.err.println(i);
 	}
 	
 	@Autowired
@@ -24,5 +23,5 @@ public class UserInfoDaoTest {
 	@Test
 	public void test2() {
 		dao.Test();
-	}
+	}*/
 }

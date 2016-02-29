@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+
+//拦截器和具体框架关联，HandlerInterceptorAdapter即为spring下的拦截器
 public class SecurityInterceptor extends HandlerInterceptorAdapter {
 
 	@Override

@@ -11,3 +11,13 @@ SecurityInterceptor拦截器：postHandle
 拦截器：postHandle
 SecurityInterceptor拦截器：afterCompletion
 拦截器：afterCompletion
+
+
+http://mvnrepository.com/artifact/org.springframework/spring-orm
+
+<dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-validator</artifactId>
+    <version>4.0.2.GA</version>
+    <scope>test</scope>
+</dependency> 
