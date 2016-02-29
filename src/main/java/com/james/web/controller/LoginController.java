@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.james.domain.User;
+import com.james.domain.UserOld;
 import com.james.service.UserService;
 import com.james.utils.ExportUtil;
 
@@ -36,7 +37,7 @@ public class LoginController extends BaseController {
 		if (!isValidUser) {
 			return new ModelAndView("login", "error", "用户名或密码错误。");
 		} else {
-			User user = userService.findUserByUserName(loginCommand.getUserName());
+			UserOld user = userService.findUserByUserName(loginCommand.getUserName());
 			user.setLastIp(request.getLocalAddr());
 			user.setLastVisit(new Date());
 			userService.loginSuccess(user);
@@ -69,8 +70,8 @@ public class LoginController extends BaseController {
 			}*/
 			Date dateNow = new Date();
 			
-			ArrayList<User> users = new ArrayList<User>();
-			User user = new User();
+			List<UserOld> users=new ArrayList<UserOld>();
+			UserOld user = new UserOld();
 			user.setLastIp("127.0.0.1");
 			user.setLastVisit(dateNow);
 			user.setPassword("123");
@@ -78,16 +79,24 @@ public class LoginController extends BaseController {
 			user.setUserName("名称：James");
 			users.add(user);
 
-			user = new User();
+			user = new UserOld();
 			user.setLastIp("192.0.0.1");
 			user.setLastVisit(dateNow);
 			user.setPassword("456");
 			user.setUserId(2);
 			user.setUserName("名称：Mary");
 			users.add(user);
+			
+			user = new UserOld();
+			user.setLastIp("197.0.0.1");
+			user.setLastVisit(dateNow);
+			user.setPassword("777");
+			user.setUserId(2);
+			user.setUserName("名称：第三方");
+			users.add(user);
 
 			ServletOutputStream outputStream = response.getOutputStream();
-			ExportUtil.ExportExcel(titles, users, outputStream);
+			ExportUtil.ExportExcel(titles, (ArrayList<UserOld>) users, outputStream);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
