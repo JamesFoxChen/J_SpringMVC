@@ -37,7 +37,11 @@ create table t_user
    key AK_AK_USER_USER_NAME (user_name) 
 )
 ENGINE = InnoDB;
---使用type=innodb;会报错
+
+/*==============================================================*/
+/* 使用type=innodb;会报错                                     */
+/*==============================================================*/
+
 INSERT INTO t_user (user_name, password, last_login_time, last_login_ip) 
 VALUES ('admin', '123456', '2007-12-23', '127.0.0.1');
 
