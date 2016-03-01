@@ -17,11 +17,11 @@ public class User extends BaseDomain {
 
     protected String password;
 
-    @Column(name = "last_visit")
-    protected Date lastVisit;
+    @Column(name = "last_login_time")
+    protected Date lastLoginTime;
 
-    @Column(name = "last_ip")
-    protected String lastIp;
+    @Column(name = "last_login_ip")
+    protected String lastLoginIp;
 
     public int getUserId() {
         return userId;
@@ -47,19 +47,19 @@ public class User extends BaseDomain {
         this.password = password;
     }
 
-    public Date getLastVisit() {
-        return lastVisit;
-    }
+	public Date getLastLoginTime() {
+		return lastLoginTime;
+	}
 
-    public void setLastVisit(Date lastVisit) {
-        this.lastVisit = lastVisit;
-    }
+	public void setLastLoginTime(Date lastLoginTime) {
+		this.lastLoginTime = lastLoginTime;
+	}
 
-    public String getLastIp() {
-        return lastIp;
-    }
+	public String getLastLoginIp() {
+		return lastLoginIp;
+	}
 
-    public void setLastIp(String lastIp) {
-        this.lastIp = lastIp;
-    }
+	public void setLastLoginIp(String lastLoginIp) {
+		this.lastLoginIp = lastLoginIp;
+	}
 }

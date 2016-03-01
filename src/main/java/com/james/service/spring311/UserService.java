@@ -27,8 +27,8 @@ public class UserService {
 	public void saveLoginInfo(User user) {
 		LoginLog loginLog = new LoginLog();
 		loginLog.setUser(user);
-		loginLog.setIp(user.getLastIp());
-		loginLog.setLoginDate(user.getLastVisit());
+		loginLog.setIp(user.getLastLoginIp());
+		loginLog.setLoginDate(user.getLastLoginTime());
 		userDao.update(user);
 		loginLogDao.save(loginLog);
 	}

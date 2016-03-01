@@ -53,8 +53,8 @@ public class LoginController extends BaseController {
 			request.setAttribute("errorMsg", "用户密码不正确");
 			return new ModelAndView("forward:/login.jsp");
 		} else {
-            user.setLastIp(request.getLocalAddr());
-            user.setLastVisit(new Date());
+            user.setLastLoginIp(request.getLocalAddr());
+            user.setLastLoginTime(new Date());
             userService.saveLoginInfo(user);
 			setSessionUser(request,user);
 			return new ModelAndView("success");
